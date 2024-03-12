@@ -1,4 +1,6 @@
 using StroiTrendTest.Services;
+using Microsoft.OpenApi.Models;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +10,10 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddHttpClient<ChatDataService>(client =>
 {
     client.BaseAddress = new Uri("http://localhost:9080/");
+});
+
+builder.Services.AddSwaggerGen(options =>
+{
 });
 
 var app = builder.Build();
@@ -31,5 +37,8 @@ app.MapControllerRoute(
     name: "datalist",
     pattern: "data",
     defaults: new { controller = "DataList", action = "Index" });
+
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.Run();
