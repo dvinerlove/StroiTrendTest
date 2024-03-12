@@ -9,7 +9,7 @@
     <div id="dataContainer">
         @foreach (var item in Model)
         {
-                    <div class="card data-item" onclick="window.location='@Url.Action("Details", "DataList", new { date = item.Key })'">
+                        <div class="card data-item" onclick="window.location='@Url.Action("Details", "DataList", new { date = item.Key.ToString("yyyy-MM-dd") })'">
                         <div class="card-body">
                             <h5 class="card-title">Date: @item.Key.ToString("yyyy-MM-dd")</h5>
                             <p class="card-text">Total: @item.Value.Total</p>
