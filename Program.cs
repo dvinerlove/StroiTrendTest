@@ -7,7 +7,7 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddHttpClient<ChatDataService>(client =>
 {
-    client.BaseAddress = new Uri("http://localhost:5189/");
+    client.BaseAddress = new Uri("http://localhost:9080/");
 });
 
 var app = builder.Build();
