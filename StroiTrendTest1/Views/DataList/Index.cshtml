@@ -1,0 +1,36 @@
+﻿@{
+    ViewData["Title"] = "Data List";
+}
+@model IEnumerable<KeyValuePair<DateTime, ChatData>>
+
+<div class="container">
+    <h1>Total Chats</h1>
+
+    <div id="dataContainer">
+        @foreach (var item in Model)
+        {
+                    <div class="card data-item" onclick="window.location='@Url.Action("Details", "DataList", new { date = item.Key })'">
+                        <div class="card-body">
+                            <h5 class="card-title">Date: @item.Key.ToString("yyyy-MM-dd")</h5>
+                            <p class="card-text">Total: @item.Value.Total</p>
+                        </div>
+                    </div>
+        }
+    </div>
+
+    @if (Model.Any())
+    {
+                <nav aria-label="Page navigation">
+                    <ul class="pagination">
+                @for (int i = 1; i <= ViewBag.TotalPages; i++)
+                {
+                                    <li class="page-item @(i == ViewBag.Page ? "active" : "")">
+                                        <a class="page-link" href="?page=@i">@i</a>
+                                    </li>
+                }
+                    </ul>
+                </nav>
+    }
+
+    <a href="@Url.Action("Index", "Home")" class="btn btn-primary">Back</a>
+</div>

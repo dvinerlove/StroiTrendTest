@@ -1,0 +1,73 @@
+﻿@{
+    ViewData["Title"] = "Day Details";
+}
+@model DateDetails
+
+<h2 class="mb-4">Details for @Model.Date.ToString("dd.MM.yyyy")</h2>
+
+<div class="card mb-4">
+    <div class="card-header bg-dark text-white">
+        Total
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">@Model.Total</h5>
+    </div>
+</div>
+
+<div class="card mb-4">
+    <div class="card-header bg-dark text-white">
+        Duration / Agents Chatting Duration
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">@Model.Duration?.Duration / @Model.Duration?.AgentsChattingDuration</h5>
+    </div>
+</div>
+
+<div class="card mb-4">
+    <div class="card-header bg-dark text-white">
+        Good Ratings 😊
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">@Model.Ratings?.Good</h5>
+    </div>
+</div>
+
+<div class="card mb-4">
+    <div class="card-header bg-dark text-white">
+        Bad Ratings 😞
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">@Model.Ratings?.Bad</h5>
+    </div>
+</div>
+
+@if (Model.ResponseTime != null && Model.ResponseTime.Count > 0)
+{
+        <div class="card mb-4">
+        <div class="card-header bg-dark text-white">
+            Response Time
+        </div>
+          <div class="card-body">
+        <h5 class="card-title"><strong>@Model.ResponseTime?.ResponseTime</strong> of @Model.ResponseTime?.Count</h5>
+    </div>
+
+    </div>
+}
+
+<div class="card mb-4">
+    <div class="card-header bg-dark text-white">
+        Tags
+    </div>
+    <div class="card-body">
+        @if (Model.Tags != null)
+        {
+            foreach (var tag in Model.Tags)
+            {
+                                    <span>@tag.Key: @tag.Value</span>
+                                    <br />
+            }
+        }
+    </div>
+</div>
+
+<a href="javascript:history.back()" class="btn btn-primary">Back</a>
